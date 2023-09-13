@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <random>
 #include <string>
+
 void coutp(unsigned int x){
     int n = sizeof(int)*8;
     unsigned mask = (1<<(n-1));
@@ -32,10 +33,12 @@ int main(){
     unsigned int a = 0xBFC;
 
     coutp(a);
-    a = (a|((1<<(17))|(1<<(15))));
-
+    a = (a|((1<<(17))|(1<<(15))|(1<<(1))));
     coutp(a);
 
+    std::cout << "Enter a number: " << std::endl;
+    std::cin >> a;
+    coutp(a);
     a = a & ~(7 << 3);
     coutp(a);
 
