@@ -127,11 +127,11 @@ int main(){
         fileSorter.at(int(std::stoi(line)/8)) = fileSorter.at(int(std::stoi(line)/8)) | ((1 << 7) >> std::stoi(line)%8);
     }
     ind = 0;
-    for (int i = 0; i < fileSorter.size(); i++){
-        for (int j = 0; j < sizeof(char)*8; j++){
+    for (int i = 0; i < fileSorter.size(); ++i){
+        for (int j = 0; j < sizeof(char)*8; ++j){
             if (fileSorter.at(i) & ((1 << 7) >> j)){
-                fout << 8*i+j << std::endl;
-                ind++;
+                fout << 8*i+j << "\n";
+                ++ind;
             }
         }
     }
