@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <random>
 #include <string>
+#include <chrono>
 
 void coutp(unsigned int x){
     int n = sizeof(int)*8;
@@ -123,9 +124,13 @@ int main(){
     std::cin >> a;
     genFile(a);
     std::vector<unsigned char> fileSorter(int(a/8)+1);
+    auto start = std::chrono::high_resolution_clock::now();
     while(std::getline(fin, line)){
         fileSorter.at(int(std::stoi(line)/8)) = fileSorter.at(int(std::stoi(line)/8)) | ((1 << 7) >> std::stoi(line)%8);
     }
+    auto end = std::chrono::high_resolution_clock::now();
+    std::cout << "Sorted in: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms\n";
+    std::cout << "Memory usage: " << double(fileSorter.size())/1024/1024 << " MB\n";
     ind = 0;
     for (int i = 0; i < fileSorter.size(); ++i){
         for (int j = 0; j < sizeof(char)*8; ++j){
